@@ -1,12 +1,7 @@
 <?php
 
 include 'connect.php';
-$min  = 1;
-$max  = 300;
-$num1 = rand($min, $max);
-$num2 = rand($min, $max);
-$sum  = $num1 + $num2;
-$user_answer = isset($_POST['user_answer']) ? $_POST['user_answer'] : '';
+
   
 if(isset($_POST['submit']))
 {
@@ -21,8 +16,7 @@ if(isset($_POST['submit']))
     move_uploaded_file($image_temp, $image_path);
     $description = $_POST['description'];
     $life = isset($_POST['life']) ? $_POST['life'] : '';
-    $submission_date = isset($_POST['submission_date']) ? $_POST['submission_date'] : '';
-
+    
    $sql = "insert into animal (name,category,image,image_path,description,life,submission_date) value('$name','$category','$image','$image_path','$description','$life','$submission_date')";
    if (mysqli_query($conn, $sql)) {
     header("Location: index_class.php"); // Redirect to the specified page upon successful insertion and correct calculation.
@@ -31,20 +25,7 @@ if(isset($_POST['submit']))
     echo "Failed to insert data into the database.";
 }
 
-//    if ($user_answer != $sum) {
-//     echo "incorrect calculation";
-   
-// } else{
- 
-//    $sql = "insert into test (name,category,image,image_path,description,life) value('$name','$category','$image','$image_path','$category','$description','$life')";
-//    if (mysqli_query($conn, $sql)) {
-//        header("Location: index.php");
-//         echo "success";
-//        } else {
-//        echo "fail";
-//        }
-     
-// }
+
   
        
 } 
@@ -101,9 +82,7 @@ if(isset($_POST['submit']))
         </select><br><br>
  <label>Submission Date:</label><br>
 <input type="date" name="submission_date"><br><br>
-        <label><?php echo $num1 . '+' . $num2; ?></label>
-        <input type="text" name="user_answer"><br><br>
-
+     
   <button type="submit" name="submit">Submit</button>
 </form>
 </div>
